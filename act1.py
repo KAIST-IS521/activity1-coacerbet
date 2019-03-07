@@ -20,11 +20,12 @@ with open(a1, newline='') as csvfile:
         exit(1)
     csvfile.seek(0)
     spamreader = csv.reader(csvfile, dialect, quotechar='"')
-    for row in spamreader:
-        if a3 == a2:
-            print(', '.join(row))
-            sys.exit(0)
-        else:
-            a3=a3+1
-    print('please input the number less than the column')
-    sys.exit(1)
+    for line in spamreader:
+        try :
+            line[a2-1]
+        except :
+            print('please input the number less than the rows')
+            sys.exit(1)
+    csvfile.seek(0)
+    for line in spamreader:
+        print(line[a2-1])
